@@ -6,6 +6,9 @@
 ######################################################################
 BINARY = demo
 SOURCE = demo.go
+DEMO_ADDRESS ?= 0.0.0.0
+DEMO_PORT ?= 8012
+
 
 build: 
 	CGO_ENABLED=0 go build $(SOURCE)
@@ -14,10 +17,10 @@ docker: build
 	docker build -t $(BINARY) .
 
 start: docker
-	docker run -d --name $(BINARY)-server -p 8000:8000 $(BINARY)
+	docker run -d --name $(BINARY)-server -p $(DEMO_PORT):$(DEMO_PORT) $(BINARY)
 
 run: docker
-	docker run -it -p 8000:8000 $(BINARY)
+	docker run -it -p $(DEMO_PORT):$(DEMO_PORT) $(BINARY)
 
 clean: 
 	@$(RM) -rv $(BINARY)

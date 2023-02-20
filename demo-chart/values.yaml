@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 demo_address: "0.0.0.0"
-demo_port: 8010
+demo_port: 8011
 
 replicaCount: 1
 
@@ -41,7 +41,7 @@ securityContext: {}
 
 service:
   type: LoadBalancer
-  port: 8010
+  port: 8011
 
 ingress:
   enabled: false

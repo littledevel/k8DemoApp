@@ -7,7 +7,7 @@
 BINARY = demo
 SOURCE = demo.go
 DEMO_ADDRESS ?= 0.0.0.0
-DEMO_PORT ?= 8012
+DEMO_PORT ?= 8010
 
 
 build: 

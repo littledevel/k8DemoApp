@@ -2,7 +2,7 @@ package main
 
 import (
 	"app/app"
-	"fmt"
+	"log"
 	"os"
 )
 
@@ -16,6 +16,7 @@ func main() {
 		demoPort = "8010"
 	}
 
-	fmt.Println("Starting server")
+	log.Printf("Using %s:%s address\n", demoAddress, demoPort)
+	log.Println("Starting server...")
 	app.Serve(demoAddress + ":" + demoPort)
 }

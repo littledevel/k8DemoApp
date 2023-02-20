@@ -40,7 +40,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: {{ .Values.demo_port }}
+              port: {{ .Values.demo_port  }}
           readinessProbe:
             httpGet:
               path: /
@@ -49,9 +49,9 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
           - name: DEMO_ADDRESS
-            value: {{ .Values.demo_address }} 
+            value: {{ .Values.demo_address | quote }} 
           - name: DEMO_PORT
-            value: {{ .Values.demo_port }}
+            value: {{ .Values.demo_port  | quote }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

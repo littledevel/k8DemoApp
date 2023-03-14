@@ -3,7 +3,9 @@ kind: Deployment
 metadata:
   name: {{ include "demo-chart.fullname" . }}
   labels:
-    sidecar.istio.io/injection: {{ .Values.istioInjection }}
+    {{- if eq "enabled" .Values.istioInjection  }}
+    sidecar.istio.io/injection: true
+    {{- end }}
     {{- include "demo-chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}

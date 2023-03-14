@@ -4,9 +4,7 @@ metadata:
   name: {{ include "demo-chart.fullname" . }}
   labels:
     {{- include "demo-chart.labels" . | nindent 4 }}
-    {{- if .Values.istioInjection }}
-    sidecar.istio.io/injection: true
-    {{- end }}
+    sidecar.istio.io/injection: {{ .Values.istioInjection }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}

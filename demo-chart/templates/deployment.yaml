@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: {{ include "demo-chart.fullname" . }}
   labels:
-    {{- include "demo-chart.labels" . | nindent 4 }}
     sidecar.istio.io/injection: {{ .Values.istioInjection }}
+    {{- include "demo-chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}

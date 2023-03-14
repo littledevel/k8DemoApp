@@ -3,9 +3,6 @@ kind: Deployment
 metadata:
   name: {{ include "demo-chart.fullname" . }}
   labels:
-    {{- if eq "enabled" .Values.istioInjection  }}
-    sidecar.istio.io/injection: true
-    {{- end }}
     {{- include "demo-chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -21,6 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        sidecar.istio.io/inject: {{ .Values.istioInjection | quote }}
         {{- include "demo-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
